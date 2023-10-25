@@ -1,0 +1,32 @@
+{
+  "dependencies": {
+    "@slack/bolt": "^3.14.0",
+    "airtable": "^0.12.2",
+    "dotenv": "^16.3.1",
+    "openai": "^4.14.0"
+  },
+  "name": "tdm98-bot",
+  "description": "a slack-bot testing zone",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "export NODE_ENV=dev&& nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learninglab-studio/tdm98-bot.git"
+  },
+  "keywords": [
+    "ai",
+    "slack",
+    "bot"
+  ],
+  "author": "mkuzmick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/learninglab-studio/tdm98-bot/issues"
+  },
+  "homepage": "https://github.com/learninglab-studio/tdm98-bot#readme"
+}
