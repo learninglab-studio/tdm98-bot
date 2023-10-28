@@ -18,7 +18,7 @@ exports.reactionAdded = async ({ event, client }) => {
 }
 
 exports.log = async ({ event, client }) => {
-    llog.gray(`got an event: ${event.type}:`, event)
+    llog.cyan(`got an event: ${event.type}:`, event)
 }
 
 exports.reactionRemoved = async ({ event, client }) => {

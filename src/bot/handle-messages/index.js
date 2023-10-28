@@ -11,8 +11,8 @@ module.exports.handleTesting = async ({ message, say }) => {
 }
 
 module.exports.handleBot = async ({ event, message, context }) => {
-    llog.cyan("got a bot message", message)
-    llog.white("and here's the event", event)
+    llog.red("got a bot message", message)
+    llog.red("and here's the event", event)
 }
 
 module.exports.handleHello = async ({ message, say }) => {

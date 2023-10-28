@@ -5,7 +5,7 @@ const { noBot } = require('./src/utils/ll-slack-utils/middleware');
 const { handleTesting, handleAllNonBot, handleBot, handleHello, handleAllMessages } = require('./src/bot/handle-messages');
 
 // const slashHandler = require('./src/bot/handle-slashes');
-// const eventHandler = require('./src/bot/handle-events')
+const eventHandler = require('./src/bot/handle-events')
 // const { everything } = require('./src/utils/ll-regexes') 
 
 require('dotenv').config();
@@ -24,13 +24,13 @@ app.message(/hello/, handleHello);
 // app.message(/.*/, noBot, handleAllNonBot);
 app.message(/.*/, handleAllMessages);
 
-// app.message(subtype('bot_message'), handleBot );
+app.message(subtype('bot_message'), handleBot);
 
 // app.command('/your-command', slashHandler.yourCommandHandler);
 
 // app.event("reaction_added", eventHandler.reactionAdded);
 // app.event("reaction_removed", eventHandler.reactionRemoved);
-// app.event(/.*/, eventHandler.log);
+app.event(/.*/, eventHandler.log);
 
 
 // app.action(everything, actionHandler.log);

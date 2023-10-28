@@ -14,6 +14,13 @@ const getMessages = async ({ client, message }) => {
 }
 
 module.exports = async ({ message, say, client }) => {
+
+    // function-calling code
+    // send message to openai and ask "which bot should reply?"
+    // bot determines which bot should reply
+    // handle each option below
+    
+
     if (message.channel_type == "im" && (!message.subtype || message.subtype !== 'bot_message')) {
         llog.yellow("got a dm and going to do AI stuff with it")
         llog.yellow(message)
@@ -37,7 +44,9 @@ module.exports = async ({ message, say, client }) => {
         llog.magenta(chatResponse);
         const slackResult = await client.chat.postMessage({
             channel: message.channel,
-            text: chatResponse.choices[0].message.content
+            text: chatResponse.choices[0].message.content,
+            icon_url: "https://files.slack.com/files-pri/T0HTW3H0V-F063L8594N5/mkll_02138_a_bot_version_of_shakespeare_realistic_closeup_c3af60d3-3f31-4cff-a8a9-94ec517a8d76.png?pub_secret=353634cc30",
+            username: "Director"
             // text: "got some text, but saving secretly in the console"
 
         });
