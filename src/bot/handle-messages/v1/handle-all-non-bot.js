@@ -1,5 +1,5 @@
 const OpenAI = require('openai');
-const { llog } = require("../../utils");
+const { llog } = require("../../../utils");
 
 module.exports = async ({ message, say, client }) => {
     if (message.channel_type == "im") {

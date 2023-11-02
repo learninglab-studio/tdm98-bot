@@ -1,8 +1,8 @@
 const { llog } = require("../../utils");
 const OpenAI = require('openai');
 
-const handleAllMessages = require('./handle-all-messages')
-const handleAllNonBot = require('./handle-all-non-bot')
+const handleAllMessages = require('./v1/handle-all-messages')
+const handleAllNonBot = require('./v1/handle-all-non-bot')
 
 module.exports.handleTesting = async ({ message, say }) => {
     llog.cyan("got testing testing", message)

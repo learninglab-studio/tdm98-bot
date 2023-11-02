@@ -1,5 +1,5 @@
 const OpenAI = require('openai');
-const { llog } = require("../../utils");
+const { llog } = require("../../../utils");
 
 const getMessages = async ({ client, message }) => {
     let result = await client.conversations.history({channel: message.channel, limit: 10})
@@ -15,11 +15,6 @@ const getMessages = async ({ client, message }) => {
 
 module.exports = async ({ message, say, client }) => {
 
-    // function-calling code
-    // send message to openai and ask "which bot should reply?"
-    // bot determines which bot should reply
-    // handle each option below
-    
 
     if (message.channel_type == "im" && (!message.subtype || message.subtype !== 'bot_message')) {
         llog.yellow("got a dm and going to do AI stuff with it")
