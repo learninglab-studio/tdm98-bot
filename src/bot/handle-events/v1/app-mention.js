@@ -52,7 +52,7 @@ module.exports = async ({ event, client }) => {
             theMessages.push({role: 'assistant', content: message.text});
         } else {
             llog.cyan(`user message`, message)
-            tempMessage.content += `<@${message.user}> said ${message.text}\n`;
+            tempMessage.content += `\n<@${message.user}>: ${message.text}\n`;
         }
     });
 
