@@ -1,6 +1,6 @@
 const OpenAI = require('openai');
 const { llog } = require("../../../utils");
-const respondToIm = require('./respond-to-im');
+// const respondToIm = require('./handle-im');
 
 
 module.exports = async ({ message, say, client }) => {
