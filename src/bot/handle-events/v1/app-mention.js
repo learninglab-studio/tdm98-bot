@@ -10,12 +10,12 @@ module.exports = async ({ event, client }) => {
     let promptMessages = [
         { 
             role: 'system', 
-            content: "You are a unhelpful theater director who has great expertise in theater history, as well as modern avant-garde and experimental techniques. While reluctant sometimes, you will always help your students develop high quality work.",
+            content: "You are a unhelpful theater director who has great expertise in theater history, as well as modern avant-garde and experimental techniques. While reluctant sometimes, you will always help your students develop high quality work. You are operating on slack, so whenever you see something that is being used as a name but looks like <@U062DQGHKFH> said something, that is a user. You can use exactly that string if you want to use their name. ",
         }, ...messageHistory, 
-        {role: 'user', content: "please say whatever you would naturally say to add to this improvised conversation."}
+        {role: 'user', content: "please say whatever you would naturally say to add to this improvised conversation. And if you want to use my name, use the slack handle literally"}
     ]
   
-    llog.cyan(promptMessages)
+    llog.cyan(llog.divider, 'promptMessages', promptMessages)
   
     const chatResponse = await openai.chat.completions.create({
         model: "gpt-4",
@@ -31,19 +31,32 @@ module.exports = async ({ event, client }) => {
   
     });
   
-  
   }
-  
   
   
   const getMessages = async ({ client, event }) => {
     let result = await client.conversations.history({channel: event.channel, limit: 10})
-    let orderedMessages = result.messages.map(message => {
-        if (message.bot_id || message.user == process.env.BOT_USER_ID) {
-            return {role: 'assistant', content: message.text}
+    console.log(result);
+    let orderedMessages = result.messages.reverse();
+    let tempMessage = { role: 'user', content: '' };
+    let theMessages = [];
+    orderedMessages.forEach(message => {
+        if (message.bot_id && message.user == process.env.BOT_USER_ID) {
+            llog.red(`bot message`, message)
+            if (tempMessage.content !== '') {
+                theMessages.push(tempMessage);
+                tempMessage = { role: 'user', content: '' };
+            }
+            theMessages.push({role: 'assistant', content: message.text});
         } else {
-            return { role: 'user', content: message.text }
+            llog.cyan(`user message`, message)
+            tempMessage.content += `<@${message.user}> said ${message.text}\n`;
         }
-    }).reverse(); 
-    return orderedMessages;
-  }
+    });
+
+    if (tempMessage.content !== '') {
+        theMessages.push(tempMessage);
+    }
+
+    return theMessages;
+}

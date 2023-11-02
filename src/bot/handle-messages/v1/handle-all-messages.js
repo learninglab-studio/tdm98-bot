@@ -2,7 +2,6 @@ const OpenAI = require('openai');
 const { llog } = require("../../../utils");
 // const respondToIm = require('./handle-im');
 
-
 module.exports = async ({ message, say, client }) => {
     if (message.channel_type == "im" && (!message.subtype || message.subtype !== 'bot_message')) {
         await respondToIm( { message, say, client });
@@ -12,7 +11,6 @@ module.exports = async ({ message, say, client }) => {
         llog.gray("got any old message", message)
     }
 }
-
 
 const aiDialogueResponseV1 = async ({ client, message, say }) => {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });

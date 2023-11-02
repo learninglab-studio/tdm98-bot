@@ -8,12 +8,3 @@ module.exports.director = {
     avatar: 'https://i.imgur.com/6zv2ZJc.png'
 }
 
-module.exports.basicBot = {
-    name: 'Basic Bot',
-    role: 'assistant',
-    systemPrompt: { 
-        role: 'system', 
-        content: `you are a helpful assistant.` 
-    },
-    avatar: 'https://i.imgur.com/6zv2ZJc.png'
-}
